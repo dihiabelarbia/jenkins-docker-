@@ -3,7 +3,7 @@ pipeline {
     
     agent any 
     environment {
-    DOCKERHUB_CREDENTIALS = credentials('dihiabelarbia')
+    DOCKERHUB_CREDENTIALS = credentials('admin')
     }
     stages { 
 
