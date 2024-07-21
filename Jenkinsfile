@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define DockerHub credentials using Jenkins credentials
-        DOCKERHUB_CREDENTIALS = credentials('admin')
+        DOCKERHUB_CREDENTIALS = credentials('dihiabelarbia')
     }
 
     stages { 
