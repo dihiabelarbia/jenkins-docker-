@@ -16,13 +16,11 @@ pipeline {
         
         stage('Login to DockerHub') {
             steps{
-                script {
                     // Use the credentials to login to DockerHub
-                    sh '''
+                    sh '
                         echo "${DOCKERHUB_CREDENTIALS_PSW}" | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin
-                    '''
+                    '
                 }
-            }
         }
         
         stage('Push Image') {
