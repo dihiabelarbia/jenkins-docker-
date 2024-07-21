@@ -29,5 +29,4 @@ post {
             sh 'docker logout'
         }
     }
-
 }
