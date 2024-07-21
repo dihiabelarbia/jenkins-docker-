@@ -6,6 +6,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('dihiabelarbia')
     }
 
+    
     stages { 
         stage('Build Docker Image') {
             steps {  
@@ -13,6 +14,7 @@ pipeline {
                 sh 'docker build -t myapp/flask:${BUILD_NUMBER} .'
             }
         } 
+
         
         stage('Login to DockerHub') {
             steps{
