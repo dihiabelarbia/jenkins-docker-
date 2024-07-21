@@ -1,32 +1,41 @@
 pipeline {
-
-    
     agent any 
-    environment {
-    DOCKERHUB_CREDENTIALS = credentials('admin')
-    }
-    stages { 
 
-          stage('Build docker image') {
+    environment {
+        // Define DockerHub credentials using Jenkins credentials
+        DOCKERHUB_CREDENTIALS = credentials('admin')
+    }
+
+    stages { 
+        stage('Build Docker Image') {
             steps {  
-                sh 'docker build -t myapp/flask:$BUILD_NUMBER .'
+                // Build Docker image with a tag including the build number
+                sh 'docker build -t myapp/flask:${BUILD_NUMBER} .'
             }
         } 
         
-        stage('login to dockerhub') {
+        stage('Login to DockerHub') {
             steps{
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                script {
+                    // Use the credentials to login to DockerHub
+                    sh '''
+                        echo "${DOCKERHUB_CREDENTIALS_PSW}" | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin
+                    '''
+                }
             }
         }
         
-        stage('push image') {
-            steps{
-                sh 'docker push myapp/flask:$BUILD_NUMBER'
+        stage('Push Image') {
+            steps {
+                // Push the Docker image to DockerHub
+                sh 'docker push myapp/flask:${BUILD_NUMBER}'
             }
         }
-}
-post {
+    }
+
+    post {
         always {
+            // Logout from DockerHub after the build is complete
             sh 'docker logout'
         }
     }
