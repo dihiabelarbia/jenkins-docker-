@@ -6,6 +6,8 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('dihiabelarbia')
     }
 
+
+    
     stages { 
         stage('Build Docker Image') {
             steps {  
