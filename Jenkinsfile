@@ -2,7 +2,7 @@ pipeline {
     agent any 
 
     environment {
-        // Define DockerHub credentials using Jenkins credentials
+        // Define DockerHub credentials using Jenkins credentials.
         DOCKERHUB_CREDENTIALS = credentials('dihiabelarbia')
     }
 
