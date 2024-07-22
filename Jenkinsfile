@@ -14,7 +14,6 @@ pipeline {
             }
         } 
 
-        
         stage('Login to DockerHub') {
             steps{
                     // Use the credentials to login to DockerHub
