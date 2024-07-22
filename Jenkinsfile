@@ -10,7 +10,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {  
                 // Build Docker image with a tag including the build number
-                sh 'docker build -t myapp/flask:${BUILD_NUMBER} .'
+                sh 'docker build -t dihiabelarbia/flask:${BUILD_NUMBER} .'
             }
         } 
 
@@ -25,7 +25,7 @@ pipeline {
         stage('Push Image') {
             steps {
                 // Push the Docker image to DockerHub
-                sh 'docker push myapp/flask:${BUILD_NUMBER}'
+                sh 'docker push dihiabelarbia/flask:${BUILD_NUMBER}'
             }
         }
     }
